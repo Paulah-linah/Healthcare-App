@@ -31,6 +31,9 @@ migrate_working_dir/
 .pub/
 /build/
 
+# Public directory for Vercel deployment (not ignored)
+!/public/
+
 # Symbolication related
 app.*.symbols
 

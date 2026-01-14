@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Modern healthcare booking app for Kenya",
   "scripts": {
-    "build": "flutter build web --web-renderer canvaskit --base-href /"
+    "build": "curl -o flutter.zip https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.19.6-stable.tar.xz && tar -xf flutter.zip && export PATH=`pwd`/flutter/bin:$PATH && flutter build web --web-renderer canvaskit --base-href /"
   },
   "devDependencies": {},
   "dependencies": {}

@@ -25,13 +25,13 @@ class _AppointmentsScreenState extends State<AppointmentsScreen>
     super.dispose();
   }
 
-  // Mock appointments data
+  // Mock appointments data with Kenyan doctors
   List<Appointment> _appointments = [
     Appointment(
       id: '1',
       userId: '1',
       doctorId: '1',
-      doctorName: 'Dr. Sarah Wilson',
+      doctorName: 'Dr. Amina Ochieng',
       doctorSpecialty: 'Cardiology',
       date: '2024-01-15',
       time: '10:30 AM',
@@ -42,7 +42,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen>
       id: '2',
       userId: '1',
       doctorId: '2',
-      doctorName: 'Dr. James Miller',
+      doctorName: 'Dr. Joseph Kamau',
       doctorSpecialty: 'Dermatology',
       date: '2024-01-10',
       time: '02:00 PM',
@@ -53,12 +53,23 @@ class _AppointmentsScreenState extends State<AppointmentsScreen>
       id: '3',
       userId: '1',
       doctorId: '3',
-      doctorName: 'Dr. Emily Brown',
+      doctorName: 'Dr. Grace Wanjiru',
       doctorSpecialty: 'Pediatrics',
       date: '2024-01-20',
       time: '11:00 AM',
       status: AppointmentStatus.upcoming,
       price: 10000,
+    ),
+    Appointment(
+      id: '4',
+      userId: '1',
+      doctorId: '4',
+      doctorName: 'Dr. David Mutiso',
+      doctorSpecialty: 'Neurology',
+      date: '2024-01-25',
+      time: '09:00 AM',
+      status: AppointmentStatus.upcoming,
+      price: 18000,
     ),
   ];
 

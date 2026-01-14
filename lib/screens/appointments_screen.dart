@@ -26,7 +26,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen>
   }
 
   // Mock appointments data
-  final List<Appointment> _appointments = [
+  List<Appointment> _appointments = [
     Appointment(
       id: '1',
       userId: '1',
@@ -48,6 +48,17 @@ class _AppointmentsScreenState extends State<AppointmentsScreen>
       time: '02:00 PM',
       status: AppointmentStatus.completed,
       price: 12000,
+    ),
+    Appointment(
+      id: '3',
+      userId: '1',
+      doctorId: '3',
+      doctorName: 'Dr. Emily Brown',
+      doctorSpecialty: 'Pediatrics',
+      date: '2024-01-20',
+      time: '11:00 AM',
+      status: AppointmentStatus.upcoming,
+      price: 10000,
     ),
   ];
 
@@ -251,6 +262,10 @@ class _AppointmentsScreenState extends State<AppointmentsScreen>
                             Expanded(
                               child: OutlinedButton(
                                 onPressed: () {
+                                  setState(() {
+                                    // Find and remove the appointment
+                                    _appointments.removeWhere((apt) => apt.id == appointment.id);
+                                  });
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
                                       content: Text('Appointment cancelled'),

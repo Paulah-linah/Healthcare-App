@@ -9,39 +9,68 @@
   "routes": [
     {
       "src": "/assets/(.*)",
-      "dest": "/public/assets/$1"
+      "dest": "/public/assets/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/canvaskit/(.*)",
-      "dest": "/public/canvaskit/$1"
+      "dest": "/public/canvaskit/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/icons/(.*)",
-      "dest": "/public/icons/$1"
+      "dest": "/public/icons/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/flutter.js",
-      "dest": "/public/flutter.js"
+      "dest": "/public/flutter.js",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/flutter_bootstrap.js",
-      "dest": "/public/flutter_bootstrap.js"
+      "dest": "/public/flutter_bootstrap.js",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/main.dart.js",
-      "dest": "/public/main.dart.js"
+      "dest": "/public/main.dart.js",
+      "headers": {
+        "Cache-Control": "no-cache, no-store, must-revalidate"
+      }
     },
     {
       "src": "/favicon.png",
-      "dest": "/public/favicon.png"
+      "dest": "/public/favicon.png",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/manifest.json",
-      "dest": "/public/manifest.json"
+      "dest": "/public/manifest.json",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/(.*)",
-      "dest": "/public/index.html"
+      "dest": "/public/index.html",
+      "headers": {
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0"
+      }
     }
   ]
 }

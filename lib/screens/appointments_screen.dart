@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import '../models/appointment.dart';
+import '../services/appointments_store.dart';
 
 class AppointmentsScreen extends StatefulWidget {
-  const AppointmentsScreen({super.key});
+  final AppointmentStatus? initialTab;
+
+  const AppointmentsScreen({
+    super.key,
+    this.initialTab,
+  });
 
   @override
   State<AppointmentsScreen> createState() => _AppointmentsScreenState();
@@ -12,11 +18,37 @@ class AppointmentsScreen extends StatefulWidget {
 class _AppointmentsScreenState extends State<AppointmentsScreen>
     with TickerProviderStateMixin {
   late TabController _tabController;
+  bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
+    final initialStatus = widget.initialTab;
+    if (initialStatus != null) {
+      _tabController.index = _tabIndexForStatus(initialStatus);
+    }
+    _loadAppointments();
+  }
+
+  int _tabIndexForStatus(AppointmentStatus status) {
+    switch (status) {
+      case AppointmentStatus.upcoming:
+        return 0;
+      case AppointmentStatus.completed:
+        return 1;
+      case AppointmentStatus.cancelled:
+        return 2;
+    }
+  }
+
+  Future<void> _loadAppointments() async {
+    final loaded = await AppointmentsStore.ensureSeeded();
+    if (!mounted) return;
+    setState(() {
+      _appointments = loaded;
+      _isLoading = false;
+    });
   }
 
   @override
@@ -25,53 +57,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen>
     super.dispose();
   }
 
-  // Mock appointments data with Kenyan doctors
-  List<Appointment> _appointments = [
-    Appointment(
-      id: '1',
-      userId: '1',
-      doctorId: '1',
-      doctorName: 'Dr. Amina Ochieng',
-      doctorSpecialty: 'Cardiology',
-      date: '2024-01-15',
-      time: '10:30 AM',
-      status: AppointmentStatus.upcoming,
-      price: 15000,
-    ),
-    Appointment(
-      id: '2',
-      userId: '1',
-      doctorId: '2',
-      doctorName: 'Dr. Joseph Kamau',
-      doctorSpecialty: 'Dermatology',
-      date: '2024-01-10',
-      time: '02:00 PM',
-      status: AppointmentStatus.completed,
-      price: 12000,
-    ),
-    Appointment(
-      id: '3',
-      userId: '1',
-      doctorId: '3',
-      doctorName: 'Dr. Grace Wanjiru',
-      doctorSpecialty: 'Pediatrics',
-      date: '2024-01-20',
-      time: '11:00 AM',
-      status: AppointmentStatus.upcoming,
-      price: 10000,
-    ),
-    Appointment(
-      id: '4',
-      userId: '1',
-      doctorId: '4',
-      doctorName: 'Dr. David Mutiso',
-      doctorSpecialty: 'Neurology',
-      date: '2024-01-25',
-      time: '09:00 AM',
-      status: AppointmentStatus.upcoming,
-      price: 18000,
-    ),
-  ];
+  List<Appointment> _appointments = [];
 
   List<Appointment> _getAppointmentsByStatus(AppointmentStatus status) {
     final filteredAppointments = _appointments.where((apt) => apt.status == status).toList();
@@ -81,6 +67,15 @@ class _AppointmentsScreenState extends State<AppointmentsScreen>
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      return const Scaffold(
+        backgroundColor: Color(0xFFF8FAFC),
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: const Color(0xFFF8FAFC),
       appBar: AppBar(
@@ -276,10 +271,11 @@ class _AppointmentsScreenState extends State<AppointmentsScreen>
                               child: OutlinedButton(
                                 onPressed: () {
                                   setState(() {
-                                    // Find and update appointment status to cancelled
-                                    final appointmentIndex = _appointments.indexWhere((apt) => apt.id == appointment.id);
+                                    // Optimistic local update
+                                    final appointmentIndex = _appointments.indexWhere(
+                                      (apt) => apt.id == appointment.id,
+                                    );
                                     if (appointmentIndex != -1) {
-                                      print('Cancelling appointment: ${appointment.id}, current status: ${_appointments[appointmentIndex].status.displayName}');
                                       _appointments[appointmentIndex] = Appointment(
                                         id: appointment.id,
                                         userId: appointment.userId,
@@ -291,9 +287,12 @@ class _AppointmentsScreenState extends State<AppointmentsScreen>
                                         status: AppointmentStatus.cancelled,
                                         price: appointment.price,
                                       );
-                                      print('Updated appointment status to: ${_appointments[appointmentIndex].status.displayName}');
                                     }
                                   });
+                                  AppointmentsStore.updateStatus(
+                                    appointmentId: appointment.id,
+                                    status: AppointmentStatus.cancelled,
+                                  );
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
                                       content: Text('Appointment cancelled'),

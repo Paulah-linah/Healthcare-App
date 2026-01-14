@@ -3,6 +3,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/user.dart';
 import '../widgets/custom_button.dart';
+import '../main.dart';
 
 class ProfileScreen extends StatefulWidget {
   final User? user;
@@ -30,8 +31,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     await prefs.remove('user');
     
     if (mounted) {
-      Navigator.of(context).pushNamedAndRemoveUntil(
-        '/',
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (_) => const AuthWrapper()),
         (route) => false,
       );
     }

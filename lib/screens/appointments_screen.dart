@@ -253,7 +253,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen>
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
-                                  'KES ${appointment.price}',
+                                  'KSh ${appointment.price}',
                                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                     fontWeight: FontWeight.w600,
                                   ),

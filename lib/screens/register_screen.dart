@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../widgets/custom_button.dart';
@@ -53,7 +54,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     // Save user to SharedPreferences
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('user', user.toJson().toString());
+    await prefs.setString('user', jsonEncode(user.toJson()));
 
     setState(() {
       _isLoading = false;

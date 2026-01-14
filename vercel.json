@@ -39,7 +39,18 @@
       "src": "/flutter_bootstrap.js",
       "dest": "/public/flutter_bootstrap.js",
       "headers": {
-        "Cache-Control": "public, max-age=31536000, immutable"
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0"
+      }
+    },
+    {
+      "src": "/flutter_service_worker.js",
+      "dest": "/public/flutter_service_worker.js",
+      "headers": {
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0"
       }
     },
     {

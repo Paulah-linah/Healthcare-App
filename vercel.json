@@ -2,8 +2,8 @@
   "version": 2,
   "builds": [
     {
-      "src": "build/web/**",
-      "use": "@vercel/static"
+      "src": "package.json",
+      "use": "@vercel/static-build"
     }
   ],
   "routes": [
@@ -11,5 +11,8 @@
       "src": "/(.*)",
       "dest": "/build/web/$1"
     }
-  ]
+  ],
+  "installCommand": "npm install",
+  "buildCommand": "flutter build web --web-renderer canvaskit --base-href /",
+  "outputDirectory": "build/web"
 }

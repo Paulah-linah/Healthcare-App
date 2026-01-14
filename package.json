@@ -1,0 +1,10 @@
+{
+  "name": "medicare-app",
+  "version": "1.0.0",
+  "description": "Modern healthcare booking app for Kenya",
+  "scripts": {
+    "build": "flutter build web --web-renderer canvaskit --base-href /"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}

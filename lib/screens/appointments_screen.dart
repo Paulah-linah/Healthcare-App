@@ -263,8 +263,21 @@ class _AppointmentsScreenState extends State<AppointmentsScreen>
                               child: OutlinedButton(
                                 onPressed: () {
                                   setState(() {
-                                    // Find and remove the appointment
-                                    _appointments.removeWhere((apt) => apt.id == appointment.id);
+                                    // Find and update appointment status to cancelled
+                                    final appointmentIndex = _appointments.indexWhere((apt) => apt.id == appointment.id);
+                                    if (appointmentIndex != -1) {
+                                      _appointments[appointmentIndex] = Appointment(
+                                        id: appointment.id,
+                                        userId: appointment.userId,
+                                        doctorId: appointment.doctorId,
+                                        doctorName: appointment.doctorName,
+                                        doctorSpecialty: appointment.doctorSpecialty,
+                                        date: appointment.date,
+                                        time: appointment.time,
+                                        status: AppointmentStatus.cancelled,
+                                        price: appointment.price,
+                                      );
+                                    }
                                   });
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(

@@ -10,6 +10,7 @@ import '../widgets/custom_button.dart';
 import 'explore_screen.dart';
 import 'appointments_screen.dart';
 import 'profile_screen.dart';
+import 'assessment_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -190,7 +191,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       CustomButton(
                         text: 'Start Assessment',
                         onPressed: () {
-                          // TODO: Navigate to AI assessment
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const AssessmentScreen(),
+                            ),
+                          );
                         },
                         isSecondary: true,
                         width: double.infinity,

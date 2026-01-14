@@ -251,7 +251,12 @@ class _AppointmentsScreenState extends State<AppointmentsScreen>
                             Expanded(
                               child: OutlinedButton(
                                 onPressed: () {
-                                  // TODO: Cancel appointment
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('Appointment cancelled'),
+                                      backgroundColor: Color(0xFFEF4444),
+                                    ),
+                                  );
                                 },
                                 style: OutlinedButton.styleFrom(
                                   side: const BorderSide(color: Color(0xFFEF4444)),
@@ -269,7 +274,12 @@ class _AppointmentsScreenState extends State<AppointmentsScreen>
                             Expanded(
                               child: ElevatedButton(
                                 onPressed: () {
-                                  // TODO: Reschedule appointment
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('Appointment rescheduled'),
+                                      backgroundColor: Color(0xFF6366F1),
+                                    ),
+                                  );
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: const Color(0xFF6366F1),

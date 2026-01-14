@@ -8,8 +8,40 @@
   ],
   "routes": [
     {
+      "src": "/assets/(.*)",
+      "dest": "/public/assets/$1"
+    },
+    {
+      "src": "/canvaskit/(.*)",
+      "dest": "/public/canvaskit/$1"
+    },
+    {
+      "src": "/icons/(.*)",
+      "dest": "/public/icons/$1"
+    },
+    {
+      "src": "/flutter.js",
+      "dest": "/public/flutter.js"
+    },
+    {
+      "src": "/flutter_bootstrap.js",
+      "dest": "/public/flutter_bootstrap.js"
+    },
+    {
+      "src": "/main.dart.js",
+      "dest": "/public/main.dart.js"
+    },
+    {
+      "src": "/favicon.png",
+      "dest": "/public/favicon.png"
+    },
+    {
+      "src": "/manifest.json",
+      "dest": "/public/manifest.json"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/public/$1"
+      "dest": "/public/index.html"
     }
   ]
 }

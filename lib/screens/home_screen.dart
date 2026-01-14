@@ -34,15 +34,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _onSearchChanged() {
     final query = _searchController.text.toLowerCase();
+    print('Search query: $query'); // Debug print
     setState(() {
       if (query.isEmpty) {
         _filteredDoctors = initialDoctors;
+        print('Showing all doctors: ${_filteredDoctors.length}'); // Debug print
       } else {
         _filteredDoctors = initialDoctors.where((doctor) {
-          return doctor.name.toLowerCase().contains(query) ||
+          final matches = doctor.name.toLowerCase().contains(query) ||
               doctor.specialty.displayName.toLowerCase().contains(query) ||
               doctor.hospital.toLowerCase().contains(query);
+          print('Doctor ${doctor.name} matches: $matches'); // Debug print
+          return matches;
         }).toList();
+        print('Filtered doctors: ${_filteredDoctors.length}'); // Debug print
       }
     });
   }
@@ -127,16 +132,26 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                    Container(
-                      width: 48,
-                      height: 48,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF6366F1),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: const Icon(
-                        Icons.notifications_outlined,
-                        color: Colors.white,
+                    GestureDetector(
+                      onTap: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('No new notifications'),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: 48,
+                        height: 48,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF6366F1),
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: const Icon(
+                              Icons.notifications_outlined,
+                              color: Colors.white,
+                            ),
                       ),
                     ),
                   ],
@@ -352,17 +367,46 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 16),
                 
                 // Doctors List
-                ..._filteredDoctors.take(3).map((doctor) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: DoctorCard(
-                      doctor: doctor,
-                      onTap: () {
-                        // TODO: Navigate to doctor details
-                      },
+                if (_filteredDoctors.isEmpty)
+                  Container(
+                    padding: const EdgeInsets.all(32),
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.search_off,
+                          size: 64,
+                          color: const Color(0xFF94A3B8),
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          'No doctors found',
+                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            color: const Color(0xFF64748B),
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          'Try searching with different keywords',
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: const Color(0xFF94A3B8),
+                          ),
+                        ),
+                      ],
                     ),
-                  );
-                }).toList(),
+                  )
+                else
+                  ..._filteredDoctors.map((doctor) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 16.0),
+                      child: DoctorCard(
+                        doctor: doctor,
+                        onTap: () {
+                          // TODO: Navigate to doctor details
+                        },
+                      ),
+                    );
+                  }).toList(),
               ],
             ),
           ),

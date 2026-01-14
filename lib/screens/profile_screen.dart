@@ -55,7 +55,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
           IconButton(
             icon: const Icon(Icons.settings_outlined),
             onPressed: () {
-              // TODO: Navigate to settings
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Settings feature coming soon'),
+                  backgroundColor: Color(0xFF6366F1),
+                ),
+              );
             },
           ),
         ],
@@ -156,49 +161,84 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           icon: Icons.person_outline,
                           title: 'Edit Profile',
                           onTap: () {
-                            // TODO: Navigate to edit profile
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Edit profile feature coming soon'),
+                                backgroundColor: Color(0xFF6366F1),
+                              ),
+                            );
                           },
                         ),
                         _buildMenuItem(
                           icon: Icons.history,
                           title: 'Medical History',
                           onTap: () {
-                            // TODO: Navigate to medical history
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Medical history feature coming soon'),
+                                backgroundColor: Color(0xFF6366F1),
+                              ),
+                            );
                           },
                         ),
                         _buildMenuItem(
                           icon: Icons.payment,
                           title: 'Payment Methods',
                           onTap: () {
-                            // TODO: Navigate to payment methods
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Payment methods feature coming soon'),
+                                backgroundColor: Color(0xFF6366F1),
+                              ),
+                            );
                           },
                         ),
                         _buildMenuItem(
                           icon: Icons.notifications_outlined,
                           title: 'Notifications',
                           onTap: () {
-                            // TODO: Navigate to notifications
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Notifications feature coming soon'),
+                                backgroundColor: Color(0xFF6366F1),
+                              ),
+                            );
                           },
                         ),
                         _buildMenuItem(
                           icon: Icons.privacy_tip_outlined,
                           title: 'Privacy Policy',
                           onTap: () {
-                            // TODO: Navigate to privacy policy
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Privacy policy feature coming soon'),
+                                backgroundColor: Color(0xFF6366F1),
+                              ),
+                            );
                           },
                         ),
                         _buildMenuItem(
                           icon: Icons.help_outline,
                           title: 'Help & Support',
                           onTap: () {
-                            // TODO: Navigate to help & support
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Help & support feature coming soon'),
+                                backgroundColor: Color(0xFF6366F1),
+                              ),
+                            );
                           },
                         ),
                         _buildMenuItem(
                           icon: Icons.admin_panel_settings_outlined,
                           title: 'Admin Panel',
                           onTap: () {
-                            // TODO: Navigate to admin panel
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Admin panel feature coming soon'),
+                                backgroundColor: Color(0xFF6366F1),
+                              ),
+                            );
                           },
                         ),
                       ],

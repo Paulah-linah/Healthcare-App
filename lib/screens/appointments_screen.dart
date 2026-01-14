@@ -63,7 +63,9 @@ class _AppointmentsScreenState extends State<AppointmentsScreen>
   ];
 
   List<Appointment> _getAppointmentsByStatus(AppointmentStatus status) {
-    return _appointments.where((apt) => apt.status == status).toList();
+    final filteredAppointments = _appointments.where((apt) => apt.status == status).toList();
+    print('Getting appointments for status: ${status.displayName}, found: ${filteredAppointments.length}');
+    return filteredAppointments;
   }
 
   @override
@@ -266,6 +268,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen>
                                     // Find and update appointment status to cancelled
                                     final appointmentIndex = _appointments.indexWhere((apt) => apt.id == appointment.id);
                                     if (appointmentIndex != -1) {
+                                      print('Cancelling appointment: ${appointment.id}, current status: ${_appointments[appointmentIndex].status.displayName}');
                                       _appointments[appointmentIndex] = Appointment(
                                         id: appointment.id,
                                         userId: appointment.userId,
@@ -277,6 +280,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen>
                                         status: AppointmentStatus.cancelled,
                                         price: appointment.price,
                                       );
+                                      print('Updated appointment status to: ${_appointments[appointmentIndex].status.displayName}');
                                     }
                                   });
                                   ScaffoldMessenger.of(context).showSnackBar(

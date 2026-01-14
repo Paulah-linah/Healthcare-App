@@ -197,7 +197,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           );
                         },
-                        isSecondary: true,
                         width: double.infinity,
                       ),
                     ],

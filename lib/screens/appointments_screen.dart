@@ -247,7 +247,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen>
                             Column(
                               children: [
                                 Icon(
-                                  Icons.attach_money,
+                                  Icons.payments,
                                   size: 20,
                                   color: const Color(0xFF10B981),
                                 ),

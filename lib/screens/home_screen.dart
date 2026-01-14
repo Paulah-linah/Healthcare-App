@@ -23,11 +23,28 @@ class _HomeScreenState extends State<HomeScreen> {
   User? _currentUser;
   final TextEditingController _searchController = TextEditingController();
   int _selectedBottomNavIndex = 0;
+  List<Doctor> _filteredDoctors = initialDoctors;
 
   @override
   void initState() {
     super.initState();
     _loadUser();
+    _searchController.addListener(_onSearchChanged);
+  }
+
+  void _onSearchChanged() {
+    final query = _searchController.text.toLowerCase();
+    setState(() {
+      if (query.isEmpty) {
+        _filteredDoctors = initialDoctors;
+      } else {
+        _filteredDoctors = initialDoctors.where((doctor) {
+          return doctor.name.toLowerCase().contains(query) ||
+              doctor.specialty.displayName.toLowerCase().contains(query) ||
+              doctor.hospital.toLowerCase().contains(query);
+        }).toList();
+      }
+    });
   }
 
   Future<void> _loadUser() async {
@@ -335,7 +352,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 16),
                 
                 // Doctors List
-                ...initialDoctors.take(3).map((doctor) {
+                ..._filteredDoctors.take(3).map((doctor) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 16.0),
                     child: DoctorCard(

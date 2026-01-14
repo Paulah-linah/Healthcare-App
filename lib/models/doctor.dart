@@ -75,24 +75,24 @@ class Doctor {
   }
 }
 
-// Initial doctors data with Kenyan Shillings pricing
+// Initial doctors data with Kenyan names and avatars
 final List<Doctor> initialDoctors = [
   Doctor(
     id: '1',
-    name: 'Dr. Sarah Wilson',
+    name: 'Dr. Amina Ochieng',
     specialty: Specialty.CARDIOLOGY,
     experience: 12,
     rating: 4.9,
     reviews: 124,
     price: 15000, // KES 15,000
-    about: 'Experienced cardiologist specializing in heart failure and preventive cardiology. Graduated from Stanford Medical School.',
+    about: 'Experienced cardiologist specializing in heart failure and preventive cardiology. Graduated from University of Nairobi Medical School.',
     availability: ['09:00 AM', '10:30 AM', '02:00 PM', '04:30 PM'],
-    image: 'https://picsum.photos/seed/doctor-female-1/400/400',
-    hospital: 'Heart & Vascular Institute',
+    image: 'avatar',
+    hospital: 'Kenyatta National Hospital',
   ),
   Doctor(
     id: '2',
-    name: 'Dr. James Miller',
+    name: 'Dr. Joseph Kamau',
     specialty: Specialty.DERMATOLOGY,
     experience: 8,
     rating: 4.8,
@@ -100,12 +100,12 @@ final List<Doctor> initialDoctors = [
     price: 12000, // KES 12,000
     about: 'Board-certified dermatologist focusing on medical and cosmetic skin treatments, including acne and skin cancer screenings.',
     availability: ['11:00 AM', '01:00 PM', '03:30 PM'],
-    image: 'https://picsum.photos/seed/doctor-male-1/400/400',
-    hospital: 'Skin & Wellness Center',
+    image: 'avatar',
+    hospital: 'Nairobi Hospital',
   ),
   Doctor(
     id: '3',
-    name: 'Dr. Emily Chen',
+    name: 'Dr. Grace Wanjiru',
     specialty: Specialty.PEDIATRICS,
     experience: 15,
     rating: 5.0,
@@ -113,12 +113,12 @@ final List<Doctor> initialDoctors = [
     price: 10000, // KES 10,000
     about: 'Dedicated pediatrician with a passion for child development and preventive healthcare for children of all ages.',
     availability: ['08:30 AM', '10:00 AM', '12:30 PM', '02:30 PM'],
-    image: 'https://picsum.photos/seed/doctor-female-2/400/400',
-    hospital: 'Children\'s Care Clinic',
+    image: 'avatar',
+    hospital: 'Mombasa Hospital',
   ),
   Doctor(
     id: '4',
-    name: 'Dr. Robert Fox',
+    name: 'Dr. David Mutiso',
     specialty: Specialty.NEUROLOGY,
     experience: 10,
     rating: 4.7,
@@ -126,7 +126,7 @@ final List<Doctor> initialDoctors = [
     price: 18000, // KES 18,000
     about: 'Specialist in neurological disorders with a focus on migraines, epilepsy, and cognitive health.',
     availability: ['09:30 AM', '11:30 AM', '03:00 PM'],
-    image: 'https://picsum.photos/seed/doctor-male-2/400/400',
-    hospital: 'City General Hospital',
+    image: 'avatar',
+    hospital: 'Aga Khan Hospital',
   ),
 ];

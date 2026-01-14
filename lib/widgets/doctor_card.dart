@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import '../models/doctor.dart';
 
 class DoctorCard extends StatelessWidget {
@@ -38,32 +37,18 @@ class DoctorCard extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  // Doctor Image
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
-                    child: CachedNetworkImage(
-                      imageUrl: doctor.image,
-                      width: 80,
-                      height: 80,
-                      fit: BoxFit.cover,
-                      placeholder: (context, url) => Container(
-                        width: 80,
-                        height: 80,
-                        color: const Color(0xFFF1F5F9),
-                        child: const Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                      ),
-                      errorWidget: (context, url, error) => Container(
-                        width: 80,
-                        height: 80,
-                        color: const Color(0xFFF1F5F9),
-                        child: const Icon(
-                          Icons.person,
-                          size: 40,
-                          color: Color(0xFF94A3B8),
-                        ),
-                      ),
+                  // Doctor Avatar
+                  Container(
+                    width: 80,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF6366F1).withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: const Icon(
+                      Icons.person,
+                      size: 40,
+                      color: Color(0xFF6366F1),
                     ),
                   ),
                   
